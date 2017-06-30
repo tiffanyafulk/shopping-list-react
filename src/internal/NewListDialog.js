@@ -3,10 +3,15 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../App.css';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+
+const dialogContentStyle = {
+  width: '20%',
+};
 
 class NewListDialog extends Component {
   constructor(props) {
@@ -23,6 +28,10 @@ class NewListDialog extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleNewListTextFieldChange = this.handleNewListTextFieldChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+
+    NewListDialog.propTypes = {
+      onFormSubmission: PropTypes.func.isRequired,
+    };
   }
 
   handleOpen = () => {
@@ -88,7 +97,12 @@ class NewListDialog extends Component {
     return (
       <div>
         <FlatButton primary={true} label="New List" onTouchTap={this.handleOpen} />
-        <Dialog title="Add A New List" actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose}>
+        <Dialog title="Add A New List"
+                actions={actions}
+                modal={false}
+                open={this.state.open}
+                contentStyle={dialogContentStyle}
+                onRequestClose={this.handleClose}>
           <TextField type="text"
                      value={this.state.newListNameFieldValue}
                      onChange={this.handleNewListTextFieldChange}

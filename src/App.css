@@ -40,6 +40,21 @@
   display: inline-block;
 }
 
+.items-checked {
+  display: inline-block;
+  float: right;
+}
+
+.list-title {
+  display: inline-block;
+  margin: 0 15px 0 0;
+}
+
+.list-header {
+  display: inline-block;
+  margin: 15px 0 0 0;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

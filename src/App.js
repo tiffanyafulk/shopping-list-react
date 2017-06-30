@@ -49,7 +49,9 @@ class App extends Component {
             <NewListDialog onFormSubmission={this.handleNewListFormSubmission}/>
           </div>
           {this.state.lists.map((list) => {
-            return <ListComponent key={list.id+'-list-component'} id={list.id} name={list.name} onDelete={this.deleteList}/>
+            return <ListComponent key={list.id+'-list-component'}
+                                  id={list.id} name={list.name}
+                                  onDelete={this.deleteList}/>
           })}
         </div>
       </MuiThemeProvider>

@@ -11,9 +11,15 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider'
 
 import NewListItemForm from './NewListItemForm';
 import List from './List';
+
+const dividerStyle = {
+  marginTop: 45,
+  marginBottom: 10,
+};
 
 class ListComponent extends Component {
   constructor(props) {
@@ -42,7 +48,9 @@ class ListComponent extends Component {
 
     ListComponent.propTypes = {
       onDelete: PropTypes.func.isRequired,
-    }
+      id: PropTypes.number,
+      name: PropTypes.string,
+    };
   }
 
   addListItem(item) {
@@ -77,9 +85,13 @@ class ListComponent extends Component {
     return (
       <Paper zDepth={2} className="list-component">
         <DeleteListDialog onDelete={this.props.onDelete} listId={this.props.id}/>
-        <List title={this.props.name} data={this.state.list} onCheckboxClicked={this.toggleItemCheckbox}/>
+        <List title={this.props.name}
+              data={this.state.list}
+              onCheckboxClicked={this.toggleItemCheckbox}/>
+        <Divider style={dividerStyle}/>
         <NewListItemForm onFormSubmission={this.addListItem}/>
-        <RaisedButton className="delete-checked-items" secondary={true}
+        <RaisedButton className="delete-checked-items"
+                      secondary={true}
                       label="Delete Checked Items"
                       onClick={this.handleDeleteCheckedItems}/>
       </Paper>
@@ -100,6 +112,10 @@ class DeleteListDialog extends Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleDeleteList = this.handleDeleteList.bind(this);
+
+    DeleteListDialog.propTypes = {
+      listId: PropTypes.number,
+    };
   }
 
   handleOpen() {
